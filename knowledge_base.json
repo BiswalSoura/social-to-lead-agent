@@ -1,0 +1,36 @@
+[
+  {
+    "category": "pricing",
+    "plan": "Basic Plan",
+    "price": "$29/month",
+    "videos_per_month": "10 videos/month",
+    "resolution": "720p",
+    "features": [
+      "Automated video editing",
+      "Basic export quality"
+    ]
+  },
+  {
+    "category": "pricing",
+    "plan": "Pro Plan",
+    "price": "$79/month",
+    "videos_per_month": "Unlimited videos",
+    "resolution": "4K",
+    "features": [
+      "Unlimited editing",
+      "AI captions",
+      "Premium export quality",
+      "24/7 support"
+    ]
+  },
+  {
+    "category": "policy",
+    "title": "Refund Policy",
+    "details": "No refunds after 7 days of purchase."
+  },
+  {
+    "category": "policy",
+    "title": "Support Policy",
+    "details": "24/7 support available only on Pro Plan."
+  }
+]
