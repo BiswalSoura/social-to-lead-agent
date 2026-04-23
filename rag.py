@@ -1,53 +1,48 @@
 import json
+import os
 
 
-def load_knowledge_base():
-    with open("knowledge_base.json", "r") as file:
-        return json.load(file)
+def get_knowledge():
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_dir, "knowledge_base.json")
 
+        with open(file_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
 
-def retrieve_answer(query):
-    data = load_knowledge_base()
-    query = query.lower()
+        sections = []
 
-    # Pro Plan specifically
-    if "pro" in query:
         for item in data:
-            if item.get("plan") == "Pro Plan":
-                return format_plan(item)
 
-    # Basic Plan specifically
-    if "basic" in query:
-        for item in data:
-            if item.get("plan") == "Basic Plan":
-                return format_plan(item)
+            if item.get("category") == "pricing":
+                section = f"""
+{item.get('plan', 'Plan')}
+- Price: {item.get('price', 'N/A')}
+- Videos Per Month: {item.get('videos_per_month', 'N/A')}
+- Resolution: {item.get('resolution', 'N/A')}
+- Features: {', '.join(item.get('features', []))}
+"""
+                sections.append(section.strip())
 
-    # Refund
-    if "refund" in query:
-        for item in data:
-            if item.get("title") == "Refund Policy":
-                return item["details"]
+            elif item.get("category") == "policy":
+                section = f"""
+{item.get('title', 'Policy')}
+- {item.get('details', 'N/A')}
+"""
+                sections.append(section.strip())
 
-    # Support
-    if "support" in query:
-        for item in data:
-            if item.get("title") == "Support Policy":
-                return item["details"]
+        return "\n\n".join(sections)
 
-    # General pricing
-    pricing_text = ""
-    for item in data:
-        if item["category"] == "pricing":
-            pricing_text += format_plan(item) + "\n\n"
+    except Exception:
+        return """
+Basic Plan
+- Price: $29/month
+- Videos Per Month: 10 videos/month
+- Resolution: 720p
 
-    return pricing_text.strip()
-
-
-def format_plan(item):
-    return f"""
-Plan: {item['plan']}
-Price: {item['price']}
-Usage: {item['videos_per_month']}
-Resolution: {item['resolution']}
-Features: {', '.join(item['features'])}
-""".strip()
+Pro Plan
+- Price: $79/month
+- Videos Per Month: Unlimited videos
+- Resolution: 4K
+- Features: AI captions, 24/7 support
+"""

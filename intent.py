@@ -1,28 +1,35 @@
-def detect_intent(user_message):
-    message = user_message.lower()
+def is_high_intent(user_input):
+    text = user_input.lower().strip()
 
-    greeting_keywords = [
-        "hi", "hello", "hey", "good morning", "good evening"
+    buy_words = [
+        "join",
+        "signup",
+        "sign up",
+        "buy",
+        "ready",
+        "subscribe",
+        "interested",
+        "want pro",
+        "want basic",
+        "trial",
+        "demo",
+        "book",
+        "call",
+        "start",
+        "get started",
+        "pricing please",
+        "how do i join",
+        "i want this",
+        "register",
+        "let's begin",
+        "lets begin",
+        "i'm ready",
+        "im ready",
+        "want to start",
+        "need this",
+        "use this",
+        "purchase",
+        "upgrade"
     ]
 
-    inquiry_keywords = [
-        "price", "pricing", "plan", "feature", "refund",
-        "support", "cost", "subscription"
-    ]
-
-    lead_keywords = [
-        "buy", "signup", "sign up", "purchase", "interested",
-        "want pro", "want to try", "get started",
-        "subscribe", "join", "ready"
-    ]
-
-    if any(word in message for word in greeting_keywords):
-        return "greeting"
-
-    elif any(word in message for word in lead_keywords):
-        return "high_intent"
-
-    elif any(word in message for word in inquiry_keywords):
-        return "inquiry"
-
-    return "general"
+    return any(word in text for word in buy_words)

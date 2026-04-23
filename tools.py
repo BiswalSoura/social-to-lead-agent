@@ -1,13 +1,26 @@
 import re
 
 
-def is_valid_email(email):
-    pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
-    return re.match(pattern, email)
+def valid_email(email):
+    email = email.strip()
+
+    pattern = r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+
+    return re.match(pattern, email) is not None
 
 
-def mock_lead_capture(name, email, platform):
-    print("\n✅ Lead captured successfully!")
-    print(f"Name: {name}")
-    print(f"Email: {email}")
-    print(f"Platform: {platform}")
+def capture_lead(data):
+
+    name = data.get("name", "").strip()
+    email = data.get("email", "").strip()
+    platform = data.get("platform", "").strip()
+
+    return f"""
+## ✅ Lead Captured Successfully
+
+**Name:** {name}  
+**Email:** {email}  
+**Platform:** {platform}
+
+🎉 Our onboarding team will contact you shortly.
+"""
