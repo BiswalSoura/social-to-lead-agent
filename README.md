@@ -1,6 +1,6 @@
 # Social-to-Lead Agent
 
-AI-powered conversational lead generation workflow built for the **ServiceHive Inflx Machine Learning Intern Assignment**.
+AI-powered conversational lead generation workflow.
 
 A production-style AI assistant that converts user conversations into qualified SaaS leads through intelligent chat, pricing guidance, and automated onboarding flow.
 
