@@ -1,0 +1,20 @@
+Website Visitor
+        │
+        ▼
+AutoStream LeadIQ Chatbot
+(Streamlit + Llama 3.1)
+        │
+        ▼
+Knowledge Base (RAG)
+        │
+        ▼
+Lead Capture Workflow
+        │
+        ▼
+XGBoost Lead Scoring Model
+        │
+        ▼
+Lead Priority Assignment
+        │
+        ▼
+Sales Team / CRM
